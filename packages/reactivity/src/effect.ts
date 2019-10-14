@@ -1,6 +1,6 @@
 import { OperationTypes } from './operations'
 import { Dep, targetMap } from './reactive'
-import { EMPTY_OBJ, extend } from '@vue/shared'
+import { extend, NOOP } from '@vue/shared'
 
 export const effectSymbol = Symbol(__DEV__ ? 'effect' : void 0)
 
@@ -11,19 +11,19 @@ export interface ReactiveEffect<T = any> {
   raw: () => T
   deps: Array<Dep>
   computed?: boolean
-  scheduler?: (run: Function) => void
-  onTrack?: (event: DebuggerEvent) => void
-  onTrigger?: (event: DebuggerEvent) => void
-  onStop?: () => void
+  scheduler: (run: Function) => void
+  onTrack: (event: DebuggerEvent) => void
+  onTrigger: (event: DebuggerEvent) => void
+  onStop: () => void
 }
 
 export interface ReactiveEffectOptions {
   lazy?: boolean
   computed?: boolean
-  scheduler?: (run: Function) => void
-  onTrack?: (event: DebuggerEvent) => void
-  onTrigger?: (event: DebuggerEvent) => void
-  onStop?: () => void
+  scheduler: (run: Function) => void
+  onTrack: (event: DebuggerEvent) => void
+  onTrigger: (event: DebuggerEvent) => void
+  onStop: () => void
 }
 
 export interface DebuggerEvent {
@@ -41,9 +41,17 @@ export function isEffect(fn: any): fn is ReactiveEffect {
   return fn != null && fn[effectSymbol] === true
 }
 
+const defaultEffectOption = {
+  scheduler: NOOP,
+  onTrack: NOOP,
+  onTrigger: NOOP,
+  onStop: NOOP
+}
+
 export function effect<T = any>(
   fn: () => T,
-  options: ReactiveEffectOptions = EMPTY_OBJ
+  options: ReactiveEffectOptions = __DEV__ ?
+    Object.freeze(defaultEffectOption) : defaultEffectOption
 ): ReactiveEffect<T> {
   if (isEffect(fn)) {
     fn = fn.raw
