@@ -15,6 +15,7 @@ const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 const packageOptions = pkg.buildOptions || {}
 
+//Test
 // ensure TS checks only once for each build
 let hasTSChecked = false
 
