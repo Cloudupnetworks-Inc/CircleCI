@@ -12,6 +12,7 @@ module.exports = {
     __FEATURE_OPTIONS__: true,
     __FEATURE_SUSPENSE__: true
   },
+//Test
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'lcov', 'text'],
   collectCoverageFrom: [
