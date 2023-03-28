@@ -21,7 +21,8 @@
       "@vue/*": ["packages/*/src"],
       "vue": ["packages/vue/src"]
     }
-  },
+//Test  
+},
   "include": [
     "packages/global.d.ts",
     "packages/*/src",
