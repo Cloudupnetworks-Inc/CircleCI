@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  //Test
   "scripts": {
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
