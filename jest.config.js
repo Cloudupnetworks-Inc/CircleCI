@@ -12,7 +12,7 @@ module.exports = {
     __FEATURE_OPTIONS__: true,
     __FEATURE_SUSPENSE__: true
   },
-  //Test
+  //Test_Edit from Web Browser
   coverageDirectory: 'coverage',
   coverageReporters: ['html', 'lcov', 'text'],
   collectCoverageFrom: [
