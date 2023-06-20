@@ -21,7 +21,7 @@
       "@vue/*": ["packages/*/src"],
       "vue": ["packages/vue/src"]
     }
-//Test Edit from Windows Machine 
+//Test Edit from Github Desktop 
 },
   "include": [
     "packages/global.d.ts",
